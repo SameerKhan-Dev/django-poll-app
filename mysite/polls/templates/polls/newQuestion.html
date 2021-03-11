@@ -1,11 +1,11 @@
-<form method="post">{% csrf_token %}
+<form action="{% url 'polls:addNewQuestion'%}" method="post">{% csrf_token %}
+      <label>Please type your new question below:</label>
     {{ form.as_p }}
-    <label>Please type your new question below:</label>
     <input type="text" name="new_question">
     <ul>
         {% for i in range %}
             <label>Choice {{forLoop.counter}}:</label>
-            <input type="text" name="choice_{{forLoop.counter}}">
+            <input required type="text" name="choice_{{forLoop.counter}}">
         {% endfor %}
     </ul>
 
@@ -18,5 +18,5 @@
 <!--    <input type="text" name="choice_Three">-->
 <!--    <label>Choice 4:</label>-->
 <!--    <input type="text" name="choice_Four">-->
-<!--    <input type="submit" value="Save">-->
+    <input type="submit" value="Save">
 </form>

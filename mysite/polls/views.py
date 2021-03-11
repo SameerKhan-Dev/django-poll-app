@@ -9,6 +9,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import CreateView
+from django.utils import timezone
 
 # def index(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -75,12 +76,13 @@ class NewQuestionView(CreateView):
     model = Question
     template_name = 'polls/newQuestion.html'
     fields = ['question_text', 'pub_date']
-    #success_url = '/polls/'
+    # success_url = '/polls/'
     # def get_total_votes(self):
     #     total_votes = 0
     #     for choice in self.choice_set.all:
     #         total_votes += choice.votes
     #     return total_votes
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
@@ -92,11 +94,14 @@ class NewQuestionView(CreateView):
 
 def add_new_question(request):
 
-    new_question_text = request.POST['new_question']
+    new_question_text = request.POST['question_text']
 
     new_question = Question(question_text=new_question_text, pub_date=timezone.now())
     new_question.save()
     new_question.choice_set.create()
+    latest_question_list = Question.objects.order_by('-pub_date')
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
 
 
 def vote(request, question_id):
