@@ -64,6 +64,11 @@ class DeleteQuestionView(DeleteView):
     model = Question
     template_name = 'polls/deleteQuestion.html'
     success_url = '/polls/'
+    # def get_total_votes(self):
+    #     total_votes = 0
+    #     for choice in self.choice_set.all:
+    #         total_votes += choice.votes
+    #     return total_votes
 
 
 #python3 manage.py shell < resetDB.py
@@ -86,3 +91,4 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
