@@ -86,7 +86,7 @@ class NewQuestionView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        context["range"] = range(4)
+        context["range"] = range(3)
         return context
 
 

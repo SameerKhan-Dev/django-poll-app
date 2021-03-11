@@ -7,10 +7,16 @@
     <input id="appt-time" type="time" name="appt-time" step="3" value="00:00:00">
 
     <h4><b>Please enter the available choices (upto 4) for this question:</b></h4>
+    <h4>Please note, the first choice mandatory and must be inputted. (i.e each question must have minimum one choice</h4>
+
+
     <ul>
+        <label>Choice (required):</label>
+        <input required type="text" name="choice">
+         <br>
         {% for i in range %}
-            <label>Choice {{forLoop.counter}}:</label>
-            <input required type="text" name="choice">
+            <label>Choice (optional):</label>
+            <input type="text" name="choice">
             <br>
         {% endfor %}
     </ul>
@@ -26,3 +32,4 @@
 <!--    <input type="text" name="choice_Four">-->
     <input type="submit" value="Save">
 </form>
+<button><a href="{% url 'polls:index'%}">Cancel : go Back</a></button>
