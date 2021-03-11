@@ -96,6 +96,17 @@ def add_new_question(request):
 
     new_question_text = request.POST['question_text']
     new_question_pub_date = request.POST.get('pub_date')
+    choice_0 = request.POST.getlist('choice')[0]
+    choice_1 = request.POST.getlist('choice')[1]
+    choice_2 = request.POST.getlist('choice')[2]
+    choice_3 = request.POST.getlist('choice')[3]
+
+    print("Choice 0 is :")
+    print(choice_0)
+
+    # choice_1 = request.POST.get('choice_1')
+    # choice_2 = request.POST.get('choice_2')
+    # choice_3 = request.POST.get('choice_3')
 
     # if 'pub_date' in request.POST:
     #     new_question_pub_date = request.POST['pub_date']
@@ -109,7 +120,15 @@ def add_new_question(request):
 
     new_question = Question(question_text=new_question_text, pub_date=new_question_pub_date)
     new_question.save()
-    new_question.choice_set.create()
+    if choice_0:
+        new_question.choice_set.create(choice_text=choice_0, votes=0)
+    if choice_1:
+        new_question.choice_set.create(choice_text=choice_1, votes=0)
+    if choice_2:
+        new_question.choice_set.create(choice_text=choice_2, votes=0)
+    if choice_3:
+        new_question.choice_set.create(choice_text=choice_3, votes=0)
+
     latest_question_list = Question.objects.order_by('-pub_date')
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
