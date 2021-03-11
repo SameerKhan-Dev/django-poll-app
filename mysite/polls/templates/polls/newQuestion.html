@@ -1,0 +1,22 @@
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <label>Please type your new question below:</label>
+    <input type="text" name="new_question">
+    <ul>
+        {% for i in range %}
+            <label>Choice {{forLoop.counter}}:</label>
+            <input type="text" name="choice_{{forLoop.counter}}">
+        {% endfor %}
+    </ul>
+
+<!--    <label>Please specify upto 4 choices below - for the answer:</label>-->
+<!--    <label>Choice 1:</label>-->
+<!--    <input type="text" name="choice_One">-->
+<!--    <label>Choice 2:</label>-->
+<!--    <input type="text" name="choice_Two">-->
+<!--    <label>Choice 3:</label>-->
+<!--    <input type="text" name="choice_Three">-->
+<!--    <label>Choice 4:</label>-->
+<!--    <input type="text" name="choice_Four">-->
+<!--    <input type="submit" value="Save">-->
+</form>
