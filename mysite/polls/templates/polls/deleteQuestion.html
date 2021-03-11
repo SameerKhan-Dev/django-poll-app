@@ -1,9 +1,9 @@
 <form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete the question:
-        "{{ question }}"?</p>
-
-    <p>This question has
-        "{{ question.get_total_votes}} total VOTES."?</p>
+    <p>Are you sure you want to delete the question?
+        <h2>Question:</h2>
+        {{ question }}?</p>
+        <h2>Total Votes</h2>
+    <p>{{ question.get_total_votes}} votes.</p>
     <input type="submit" value="Confirm">
 </form>
 <button><a href="{% url 'polls:index'%}">Cancel : go Back</a></button>

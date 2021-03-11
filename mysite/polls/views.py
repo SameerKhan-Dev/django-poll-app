@@ -1,6 +1,7 @@
 
 from django.shortcuts import get_object_or_404, render
 # Create your views here.
+import datetime
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -95,7 +96,11 @@ class NewQuestionView(CreateView):
 def add_new_question(request):
 
     new_question_text = request.POST['question_text']
-    new_question_pub_date = request.POST.get('pub_date')
+    pub_date = request.POST.get('pub_date')
+    pub_time = request.POST.get('pub_time')
+    pub_date_time = pub_date + " " + pub_time
+    print(pub_date_time)
+
     choice_0 = request.POST.getlist('choice')[0]
     choice_1 = request.POST.getlist('choice')[1]
     choice_2 = request.POST.getlist('choice')[2]
@@ -103,6 +108,8 @@ def add_new_question(request):
 
     print("Choice 0 is :")
     print(choice_0)
+
+    date_time_obj = datetime.datetime.strptime(pub_date_time, '%Y-%m-%d %H:%M:%S')
 
     # choice_1 = request.POST.get('choice_1')
     # choice_2 = request.POST.get('choice_2')
@@ -115,10 +122,9 @@ def add_new_question(request):
     # 3
     #
 
-
     # new_question_pub_date = request.POST['pub_date']
 
-    new_question = Question(question_text=new_question_text, pub_date=new_question_pub_date)
+    new_question = Question(question_text=new_question_text, pub_date=date_time_obj)
     new_question.save()
     if choice_0:
         new_question.choice_set.create(choice_text=choice_0, votes=0)
