@@ -75,7 +75,7 @@ class DeleteQuestionView(DeleteView):
 class NewQuestionView(CreateView):
     model = Question
     template_name = 'polls/newQuestion.html'
-    fields = ['question_text', 'pub_date']
+    fields = ['question_text']
     # success_url = '/polls/'
     # def get_total_votes(self):
     #     total_votes = 0
@@ -95,8 +95,19 @@ class NewQuestionView(CreateView):
 def add_new_question(request):
 
     new_question_text = request.POST['question_text']
+    new_question_pub_date = request.POST.get('pub_date')
 
-    new_question = Question(question_text=new_question_text, pub_date=timezone.now())
+    # if 'pub_date' in request.POST:
+    #     new_question_pub_date = request.POST['pub_date']
+    # else:
+    #     is_private = False
+    # 3
+    #
+
+
+    # new_question_pub_date = request.POST['pub_date']
+
+    new_question = Question(question_text=new_question_text, pub_date=new_question_pub_date)
     new_question.save()
     new_question.choice_set.create()
     latest_question_list = Question.objects.order_by('-pub_date')

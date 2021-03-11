@@ -1,11 +1,17 @@
 <form action="{% url 'polls:addNewQuestion'%}" method="post">{% csrf_token %}
-      <label>Please type your new question below:</label>
+      <h4><b>Please enter your new question details below:</b></h4>
     {{ form.as_p }}
-    <input type="text" name="new_question">
+    <label>Please select published (date, time):</label>
+
+    <input type="date" name="pub_date" value="2017-06-01">
+    <input id="appt-time" type="time" name="appt-time" step="3" value="00:00:00">
+
+    <h4><b>Please enter the available choices (upto 4) for this question:</b></h4>
     <ul>
         {% for i in range %}
             <label>Choice {{forLoop.counter}}:</label>
             <input required type="text" name="choice_{{forLoop.counter}}">
+            <br>
         {% endfor %}
     </ul>
 
