@@ -1,37 +1,41 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+{% extends 'polls/base.html' %}
 
-<form action="{% url 'polls:addNewQuestion'%}" method="post">{% csrf_token %}
-      <h4><b>Please enter your new question details below:</b></h4>
-    {{ form.as_p }}
-    <label>Please select published (date, time):</label>
+{% block content %}
+<div class="newQuestionContainer">
+    <form action="{% url 'polls:addNewQuestion'%}" method="post">{% csrf_token %}
+          <h4 class="newQuestionFormTitle"><b>Enter new question details below:</b></h4>
+        {{ form.as_p }}
+        <label>Please select published (date, time):</label>
 
-    <input type="date" name="pub_date" value="2017-06-01">
-    <input type="time" name="pub_time" step="3" value="00:00:00">
+        <input type="date" name="pub_date" value="2017-06-01">
+        <input type="time" name="pub_time" step="3" value="00:00:00">
 
-    <h4><b>Please enter the available choices (upto 4) for this question:</b></h4>
-    <h4>Please note, the first choice mandatory and must be inputted. (i.e each question must have minimum one choice</h4>
+        <label class="newformLabel"><b>Please enter (upto 4) choices for this question:</b></label>
+          <br>
+            <label>Choice (required):</label>
+
+            <input required type="text" name="choice">
+             <br>
+            {% for i in range %}
+                <div>
+                    <label>Choice (optional):</label>
+                    <input type="text" name="choice">
+                </div>
+            {% endfor %}
 
 
-    <ul>
-        <label>Choice (required):</label>
-        <input required type="text" name="choice">
-         <br>
-        {% for i in range %}
-            <label>Choice (optional):</label>
-            <input type="text" name="choice">
-            <br>
-        {% endfor %}
-    </ul>
+    <!--    <label>Please specify upto 4 choices below - for the answer:</label>-->
+    <!--    <label>Choice 1:</label>-->
+    <!--    <input type="text" name="choice_One">-->
+    <!--    <label>Choice 2:</label>-->
+    <!--    <input type="text" name="choice_Two">-->
+    <!--    <label>Choice 3:</label>-->
+    <!--    <input type="text" name="choice_Three">-->
+    <!--    <label>Choice 4:</label>-->
+    <!--    <input type="text" name="choice_Four">-->
+        <button type="submit" class="btn btn-success saveButton">Save!</button>
+    </form>
 
-<!--    <label>Please specify upto 4 choices below - for the answer:</label>-->
-<!--    <label>Choice 1:</label>-->
-<!--    <input type="text" name="choice_One">-->
-<!--    <label>Choice 2:</label>-->
-<!--    <input type="text" name="choice_Two">-->
-<!--    <label>Choice 3:</label>-->
-<!--    <input type="text" name="choice_Three">-->
-<!--    <label>Choice 4:</label>-->
-<!--    <input type="text" name="choice_Four">-->
-    <input type="submit" value="Save">
-</form>
-<button><a href="{% url 'polls:index'%}">Cancel : go Back</a></button>
+    <a class="btn btn-primary btn-lg active pollsButton" href="{% url 'polls:index'%}">Go Back to Polls</a>
+</div>
+{% endblock %}

@@ -54,6 +54,13 @@
     background-color: #417690;
     color: white;
 }
+.newQuestionFormTitle {
+    background-color: #417690;
+    color: white;
+    padding: 5px;
+}
+
+
 .pollsButton {
     margin: 20px;
     align-self: flex-start;
@@ -86,4 +93,27 @@
     padding: 20px;
     padding-left: 10px;
     background-color: #F5F5F5;
+}
+
+.newQuestionContainer {
+    margin: auto;
+    width: 50%;
+    margin-top: 10%;
+    text-align: center;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.newQuestionForm {
+    border: 1px solid black;
+}
+
+.newformLabel {
+      padding: 15px;
+}
+
+.saveButton {
+    margin-top: 15px;
+
 }
