@@ -1,13 +1,82 @@
 
-<h2>List of available Polls:</h2>
+{% extends 'polls/base.html' %}
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a> <button><a href="{% url 'polls:delete' question.id %}">Delete</a></button></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
-<button><a href="{% url 'polls:newQuestion'%}">Create New Question?</a></button>
+{% block content %}
+
+<div class="pollsContainer">
+    <table class="table table-striped">
+         <thead>
+                <tr>
+                    <h4 class = "listTitle">List of available Polls:</h4>
+                </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Available Polls</th>
+                    <th scope="col"></th>
+                </tr>
+         </thead>
+         <tbody>
+            {% for question in latest_question_list %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></td>
+                    <td><a class="btn btn-secondary deleteLink" href="{% url 'polls:delete' question.id %}">Delete</a></td>
+                </tr>
+           {% endfor %}
+         </tbody>
+    </table>
+</div>
+<div class="pollsContainer">
+    {% if latest_question_list %}
+        <ul>
+            <h4 class = "listTitle">List of available Polls:</h4>
+            <div class = "container">
+                {% for question in latest_question_list %}
+                    <div class = "row listItem">
+                        <div class="col">
+                            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                        </div>
+                        <div class="col">
+                            <a class="btn btn-secondary deleteLink" href="{% url 'polls:delete' question.id %}">Delete</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                <a class="btn btn-primary btn-lg active" href="{% url 'polls:newQuestion'%}">Create New Question?</a>
+            </div>
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+
+    {% endblock %}
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>

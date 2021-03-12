@@ -1,0 +1,33 @@
+.pollsContainer {
+    width: 50%;
+    margin:auto;
+    margin-top: 10%;
+
+ }
+
+ .pollsInfo {
+    width: 25%;
+ }
+
+.listItem {
+    border: 1px black solid;
+    padding: 0px;
+    margin-left: 0px;
+}
+
+.listTitle {
+    border: 1px black solid;
+    padding: 6px;
+    margin: 0%;
+    background-color: #417690;
+    color: white;
+}
+
+.deleteLink {
+    margin-left: 140px;
+}
+
+.navBar {
+    background-color: #417690;
+    color: white;
+}
