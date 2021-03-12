@@ -1,11 +1,21 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete the question?
-        <h2>Question:</h2>
-        {{ question }}?</p>
-        <h2>Total Votes</h2>
-    <p>{{ question.get_total_votes}} votes.</p>
-    <input type="submit" value="Confirm">
-</form>
-<button><a href="{% url 'polls:index'%}">Cancel : go Back</a></button>
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    <div class="containerParent">
+        <div class="deletingContainer">
+            <h2 class="detailTitle">Delete Question Confirmation</h2>
+            <form method="post">
+                {% csrf_token %}
+                <h3>Are you sure you want to delete this question?<h3>
+                    <h4>Question:</h4>
+                    <p>{{ question }}?</p>
+                    <h4>Total Votes</h4>
+                <p>{{ question.get_total_votes}} votes.</p>
+                 <button type="submit" class="btn btn-success voteButton">Confirm Delete!</button>
+            </form>
+             <a class="btn btn-primary btn-lg active pollsButton" href="{% url 'polls:index'%}">Go Back to Polls</a>
+        </div>
+    </div>
+{% endblock %}
+
