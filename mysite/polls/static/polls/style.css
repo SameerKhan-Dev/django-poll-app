@@ -65,3 +65,25 @@
 .voteButton {
     padding: 20px;
 }
+
+.totalsRow {
+    background-color: #ffffe0;
+}
+.votesCol {
+    text-align: center;
+}
+.choiceRow {
+
+     margin: 3px;
+}
+
+
+.titleRow {
+    border-bottom: none;
+    border-top: none;
+    border: 1px gray solid;
+    margin: 0%;
+    padding: 20px;
+    padding-left: 10px;
+    background-color: #F5F5F5;
+}
