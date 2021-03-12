@@ -49,9 +49,9 @@ python3 manage.py runserver   #this command runs the server on port 8000
 
 This section higlights areas where I would like to improve the app in the future.
 
-- Improve new question creation - make choices section have dynamic UI for adding / removing choices
+- Improve new question creation - add dynamic UI for adding & removing choices
 - Have timers for polls - to control duration of how long polls will be open / available for (i.e 1 day etc.)
-- Add categories for polls (sports, weather etc.) and users should be able view polls filtered by category
+- Add categories for polls (sports, weather etc.) and allows users to filter the list of polls by category
 - CSS styling, improve consistency and formatting
 - Make app responsive across different screen sizes
 - Add Extensive Error handling (some examples below)
