@@ -21,6 +21,7 @@
     margin: 0%;
     background-color: #417690;
     color: white;
+    text-align: center;
 }
 
 .deleteLink {
@@ -30,4 +31,37 @@
 .navBar {
     background-color: #417690;
     color: white;
+}
+
+.deleteCol {
+    text-align: right;
+}
+.pollsTable {
+    border: 1px gray solid;
+}
+.detailsFormVoteContainer {
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    width: 35%;
+    margin: auto;
+    margin-top: 10%;
+    border: 1px black solid;
+    background: #F8F8FF;
+}
+
+.detailTitle {
+    background-color: #417690;
+    color: white;
+}
+.pollsButton {
+    margin: 20px;
+    align-self: flex-start;
+}
+.choice {
+    padding: 10px;
+}
+
+.voteButton {
+    padding: 20px;
 }
