@@ -49,7 +49,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.order_by('-pub_date')[:6]
 
 
 class DetailView(generic.DetailView):
@@ -92,6 +92,7 @@ class NewQuestionView(CreateView):
 
 
 #python3 manage.py shell < resetDB.py
+# python manage.py dbshell
 
 def add_new_question(request):
 
@@ -137,7 +138,8 @@ def add_new_question(request):
 
     latest_question_list = Question.objects.order_by('-pub_date')
     context = {'latest_question_list': latest_question_list}
-    return render(request, 'polls/index.html', context)
+    # return render(request, 'polls/index.html', context)
+    return HttpResponseRedirect(reverse('polls:index'))
 
 
 def vote(request, question_id):
