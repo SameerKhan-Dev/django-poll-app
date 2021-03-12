@@ -8,15 +8,14 @@
             <h4><b>Question: </b>{{ question.question_text }}</h4>
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
             <form action="{% url 'polls:vote' question.id %}" method="post">
-            {% csrf_token %}
-            {% for choice in question.choice_set.all %}
-                <div class="form-check choice">
-                    <input class="form-check-input" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-                    <label class="form-check-label" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-                </div>
-            {% endfor %}
+                {% csrf_token %}
+                {% for choice in question.choice_set.all %}
+                    <div class="form-check choice">
+                        <input class="form-check-input" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                        <label class="form-check-label" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+                    </div>
+                {% endfor %}
                 <button type="submit" class="btn btn-success voteButton">VOTE!</button>
-        <!--    <input type="submit" value="Vote">-->
             </form>
             <a class="btn btn-primary btn-lg active pollsButton" href="{% url 'polls:index'%}">Go Back to Polls</a>
         </div>

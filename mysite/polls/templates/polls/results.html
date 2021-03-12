@@ -1,18 +1,5 @@
 {% extends 'polls/base.html' %}
 {% block content %}
-<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
-
-<!--<h1>{{ question.question_text }}</h1>-->
-
-<!--<ul>-->
-<!--{% for choice in question.choice_set.all %}-->
-<!--    <li>{{ choice.choice_text }} &#45;&#45; {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>-->
-<!--{% endfor %}-->
-<!--</ul>-->
-
-<!--<a href="{% url 'polls:detail' question.id %}">Vote again?</a>-->
-<!--<br>-->
-<!--<a href="{% url 'polls:index'%}">Go to Polls (All Questions Index Page)</a>-->
 
     <div class="pollsContainer">
         <table class="table pollsTable">
@@ -29,7 +16,6 @@
                     </tr>
              </thead>
              <tbody>
-
                {% for choice in question.choice_set.all %}
                     <tr class="choiceRow">
                         <td >{{ choice.choice_text }}</td>

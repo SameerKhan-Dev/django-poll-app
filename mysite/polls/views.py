@@ -12,37 +12,8 @@ from django.views.generic.edit import DeleteView
 from django.views.generic.edit import CreateView
 from django.utils import timezone
 
-# def index(request):
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     template = loader.get_template('polls/index.html')
-#     context = {
-#         'latest_question_list': latest_question_list,
-#     }
-#     return HttpResponse(template.render(context, request))
 
-# def index(request):
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     context = {'latest_question_list': latest_question_list}
-#     return render(request, 'polls/index.html', context)
-#
-# # def detail(request, question_id):
-# #     try:
-# #         question = Question.objects.get(pk=question_id)
-# #     except Question.DoesNotExist:
-# #         raise Http404("Question does not exist")
-# #     return render(request, 'polls/detail.html', {'question': question})
-#
-#
-# def detail(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, 'polls/detail.html', {'question': question})
-#
-#
-# def results(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, 'polls/results.html', {'question': question})
-
-
+# This view lists all the available polls / questions.
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -52,16 +23,19 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('-pub_date')[:6]
 
 
+# This view shows the specific poll's polling station with voting options
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
 
+# This view shows the specific poll's current voting results
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
 
+# This view shows the delete confirmation when a poll is being deleted
 class DeleteQuestionView(DeleteView):
     model = Question
     template_name = 'polls/deleteQuestion.html'
@@ -73,6 +47,7 @@ class DeleteQuestionView(DeleteView):
     #     return total_votes
 
 
+# This view shows a new question / poll creation form
 class NewQuestionView(CreateView):
     model = Question
     template_name = 'polls/newQuestion.html'
@@ -91,40 +66,22 @@ class NewQuestionView(CreateView):
         return context
 
 
-#python3 manage.py shell < resetDB.py
-# python manage.py dbshell
-
+# This function handles a new question and its choices being posted to database.
 def add_new_question(request):
-
+    # extract all form fields data
     new_question_text = request.POST['question_text']
     pub_date = request.POST.get('pub_date')
     pub_time = request.POST.get('pub_time')
     pub_date_time = pub_date + " " + pub_time
-    print(pub_date_time)
 
     choice_0 = request.POST.getlist('choice')[0]
     choice_1 = request.POST.getlist('choice')[1]
     choice_2 = request.POST.getlist('choice')[2]
     choice_3 = request.POST.getlist('choice')[3]
 
-    print("Choice 0 is :")
-    print(choice_0)
-
     date_time_obj = datetime.datetime.strptime(pub_date_time, '%Y-%m-%d %H:%M:%S')
 
-    # choice_1 = request.POST.get('choice_1')
-    # choice_2 = request.POST.get('choice_2')
-    # choice_3 = request.POST.get('choice_3')
-
-    # if 'pub_date' in request.POST:
-    #     new_question_pub_date = request.POST['pub_date']
-    # else:
-    #     is_private = False
-    # 3
-    #
-
-    # new_question_pub_date = request.POST['pub_date']
-
+    # persist new question / poll into database, along with choices
     new_question = Question(question_text=new_question_text, pub_date=date_time_obj)
     new_question.save()
     if choice_0:
@@ -142,6 +99,7 @@ def add_new_question(request):
     return HttpResponseRedirect(reverse('polls:index'))
 
 
+# This function handles updating database when a vote is submitted for a poll/question.
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:

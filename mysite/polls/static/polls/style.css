@@ -76,14 +76,14 @@
 .totalsRow {
     background-color: #ffffe0;
 }
+
 .votesCol {
     text-align: center;
 }
-.choiceRow {
 
+.choiceRow {
      margin: 3px;
 }
-
 
 .titleRow {
     border-bottom: none;
@@ -115,7 +115,6 @@
 
 .saveButton {
     margin-top: 15px;
-
 }
 
 .deletingContainer {
